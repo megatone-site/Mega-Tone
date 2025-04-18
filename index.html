@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -104,17 +105,44 @@
       width: 100%;
       height: 100%;
     }
+
+    /* Animation d'entrée */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Hover sur les liens */
+    a:hover {
+      text-shadow: 0 0 8px gold;
+      transition: 0.3s;
+    }
+
+    /* Effet au survol sur les images */
+    .profile img:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+      box-shadow: 0 0 15px gold;
+    }
   </style>
 </head>
 <body>
   <header>
     <img src="Logo Mega Tone.png" alt="Logo Mega Tone">
     <button onclick="toggleAudio()" style="position:absolute; top:20px; right:20px; padding:10px; border:none; background:gold; border-radius:10px; cursor:pointer; font-weight:bold;">🔊 / 🔇</button>
-    <h1>Mega Tone</h1>
-    <p>Voyage sonore au cœur du digital handpan</p>
+    <h1 class="fade-in">Mega Tone</h1>
+    <p class="fade-in">Voyage sonore au cœur du digital handpan</p>
   </header>
 
-  <section>
+  <section class="fade-in">
     <h2>À propos</h2>
     <div class="profiles">
       <div class="profile">
