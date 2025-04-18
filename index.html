@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mega Tone</title>
-  <audio id="bg-audio" autoplay loop muted oncanplay="this.muted=false"><source src="ambiance.mp3" type="audio/mpeg"></audio><style>
+  <audio id="bg-audio" autoplay loop muted oncanplay="this.muted=false"><source src="ambiance.mp3" type="audio/mpeg"></audio>
+  <style>
     @font-face {
       font-family: 'RobotoThin';
       src: url('Roboto-Thin.ttf');
@@ -120,21 +120,55 @@
       }
     }
 
-    /* Hover sur les liens */
     a:hover {
       text-shadow: 0 0 8px gold;
       transition: 0.3s;
     }
 
-    /* Effet au survol sur les images */
     .profile img:hover {
       transform: scale(1.05);
       transition: transform 0.3s;
       box-shadow: 0 0 15px gold;
     }
+
+    @keyframes typeIn {
+      from { width: 0; overflow: hidden; white-space: nowrap; }
+      to { width: 100%; overflow: hidden; white-space: nowrap; }
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      tsParticles.load("tsparticles", {
+        fullScreen: { enable: true, zIndex: -1 },
+        particles: {
+          number: { value: 60 },
+          size: { value: 2 },
+          color: { value: "#ffffff" },
+          opacity: { value: 0.3 },
+          move: {
+            enable: true,
+            speed: 0.3
+          },
+          links: {
+            enable: true,
+            distance: 100,
+            opacity: 0.2,
+            color: "#ffffff"
+          }
+        },
+        background: {
+          color: "transparent"
+        }
+      });
+    });
+  </script>
 </head>
 <body>
+  <div id="welcome-message" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);color:gold;display:flex;justify-content:center;align-items:center;z-index:9999;font-size:2rem;text-align:center;transition:opacity 1s ease;font-family: 'RobotoThin', sans-serif; letter-spacing: 1px;">
+    <div style="animation: typeIn 2.5s steps(30, end)">Bienvenue dans l'univers <strong>Mega Tone</strong> ✨</div>
+  </div>
+  <div id="tsparticles"></div>
   <header>
     <img src="Logo Mega Tone.png" alt="Logo Mega Tone">
     <button onclick="toggleAudio()" style="position:absolute; top:20px; right:20px; padding:10px; border:none; background:gold; border-radius:10px; cursor:pointer; font-weight:bold;">🔊 / 🔇</button>
@@ -199,16 +233,30 @@
     </form>
     <p style="text-align: center; margin-top: 10px;">Ou écrivez-nous directement à <a href="mailto:megatone357@gmail.com">megatone357@gmail.com</a></p>
   </section>
-<script>
-  function toggleAudio() {
-    const audio = document.getElementById('bg-audio');
-    if (audio.muted) {
-      audio.muted = false;
-      audio.play();
-    } else {
-      audio.muted = true;
+
+  <script>
+    function toggleAudio() {
+      const audio = document.getElementById('bg-audio');
+      if (audio.muted) {
+        audio.muted = false;
+        audio.play();
+      } else {
+        audio.muted = true;
+      }
     }
-  }
-</script>
+  </script>
+
+  <script>
+    // Disparition du message de bienvenue après 5 secondes
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(function() {
+        const welcome = document.getElementById('welcome-message');
+        if (welcome) {
+          welcome.style.opacity = '0';
+          setTimeout(() => welcome.remove(), 1000);
+        }
+      }, 5000);
+    });
+  </script>
 </body>
 </html>
