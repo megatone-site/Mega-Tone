@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mega Tone</title>
-  <style>
+  <audio id="bg-audio" autoplay loop muted oncanplay="this.muted=false"><source src="ambiance.mp3" type="audio/mpeg"></audio><style>
     @font-face {
       font-family: 'RobotoThin';
       src: url('Roboto-Thin.ttf');
@@ -13,12 +13,13 @@
     body {
       margin: 0;
       font-family: 'RobotoThin', sans-serif;
-      background: linear-gradient(to bottom right, #2b2d42, #8d99ae);
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('sitting-8656673.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #fff;
     }
 
     header {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.7);
       text-align: center;
       padding: 20px;
     }
@@ -28,9 +29,11 @@
     }
 
     section {
+      background: rgba(0, 0, 0, 0.6);
       padding: 40px;
       max-width: 1000px;
       margin: auto;
+      border-radius: 10px;
     }
 
     h2 {
@@ -38,22 +41,27 @@
       padding-bottom: 10px;
     }
 
-    .profile {
+    .profiles {
       display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 40px;
+      justify-content: space-around;
       flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .profile {
+      text-align: center;
+      max-width: 45%;
     }
 
     .profile img {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       border-radius: 15px;
       object-fit: cover;
     }
 
     .contact-form {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 10px;
     }
@@ -101,19 +109,22 @@
 <body>
   <header>
     <img src="Logo Mega Tone.png" alt="Logo Mega Tone">
+    <button onclick="toggleAudio()" style="position:absolute; top:20px; right:20px; padding:10px; border:none; background:gold; border-radius:10px; cursor:pointer; font-weight:bold;">🔊 / 🔇</button>
     <h1>Mega Tone</h1>
     <p>Voyage sonore au cœur du digital handpan</p>
   </header>
 
   <section>
     <h2>À propos</h2>
-    <div class="profile">
-      <img src="Gino.jpg" alt="Gino">
-      <p><strong>Gino</strong><br>Explorant les possibilités infinies du Neotone digital handpan, Gino crée des atmosphères sonores uniques qui transportent l'auditeur vers des horizons lointains.</p>
-    </div>
-    <div class="profile">
-      <img src="Angelo0001.jpg" alt="Angelo">
-      <p><strong>Angelo</strong><br>Angelo apporte une dimension rythmique unique au duo, mêlant techniques traditionnelles et innovations sonores rendues possibles par la technologie Neotone.</p>
+    <div class="profiles">
+      <div class="profile">
+        <img src="Gino.jpg" alt="Gino">
+        <p><strong>Gino</strong><br>Explorant les possibilités infinies du Neotone digital handpan, Gino crée des atmosphères sonores uniques qui transportent l'auditeur vers des horizons lointains.</p>
+      </div>
+      <div class="profile">
+        <img src="Angelo0001.jpg" alt="Angelo">
+        <p><strong>Angelo</strong><br>Angelo apporte une dimension rythmique unique au duo, mêlant techniques traditionnelles et innovations sonores rendues possibles par la technologie Neotone.</p>
+      </div>
     </div>
   </section>
 
@@ -158,6 +169,19 @@
 
       <button type="submit">Envoyer le message</button>
     </form>
+    <p style="text-align: center; margin-top: 10px;">Ou écrivez-nous directement à <a href="mailto:megatone357@gmail.com">megatone357@gmail.com</a></p>
   </section>
+
+  <script>
+    function toggleAudio() {
+      const audio = document.getElementById('bg-audio');
+      if (audio.muted) {
+        audio.muted = false;
+        audio.play();
+      } else {
+        audio.muted = true;
+      }
+    }
+  </script>
 </body>
 </html>
